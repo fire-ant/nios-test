@@ -1,3 +1,0 @@
-[submodule "nios-test-container"]
-	path = nios-test-container
-	url = https://github.com/ansible/nios-test-container
