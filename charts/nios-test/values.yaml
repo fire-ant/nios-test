@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: nios-test-container
+  repository: ghcr.io/fire-ant/nios-test
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "2.0.0"
