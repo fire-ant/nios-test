@@ -37,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v4.0.0
         with:
           context: "{{defaultContext}}:nios-test-container"
-          # file: nios-test-container/Dockerfile
+          file: nios-test-container/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
