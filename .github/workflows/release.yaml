@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  CHARTNAME: ${{ github.event.repository.name }}
+
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -56,7 +60,12 @@ jobs:
           password: ${{ secrets.REGISTRY_TOKEN }}
 
       - name: Build the helm chart and sign the oci image
-        run: task
-        env:
-          CR_PAT: ${{ secrets.REGISTRY_TOKEN }}
-          OWNER: ${{ github.repository_owner }}
+        shell: bash
+        run: |
+          rm -rf dist
+          mkdir dist
+          echo ${{ secrets.REGISTRY_TOKEN }} | helm registry login ghcr.io --username ${{ github.repository_owner }} --password-stdin
+          helm package charts/${{ env.CHARTNAME }} --destination dist
+          helm push dist/${{ env.CHARTNAME }}-*.tgz oci://ghcr.io/fire-ant > .digest
+          cat .digest | awk -F "[, ]+" '/Digest/{print $NF}'
+          cosign sign ghcr.io/fire-ant/${{ env.CHARTNAME }}@$(cat .digest | awk -F "[, ]+" '/Digest/{print $NF}') --yes
