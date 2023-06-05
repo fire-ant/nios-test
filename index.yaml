@@ -575,4 +575,15 @@ entries:
     urls:
     - https://github.com/helm/charts-repo-actions-demo/releases/download/example-v2-0.2.2/example-v2-0.2.2.tgz
     version: 0.2.2
-generated: "2023-02-28T10:58:11.320612234Z"
+  nios-test:
+  - apiVersion: v2
+    appVersion: 2.0.0
+    created: "2023-06-05T08:08:51.758489635Z"
+    description: A Helm chart for Kubernetes
+    digest: 173daab687a1ab1f7e6e527c6356b6b5b97755f3eddb90fc9176ff61e31e0dbf
+    name: nios-test
+    type: application
+    urls:
+    - https://github.com/fire-ant/nios-test-helm/releases/download/nios-test-0.2.0/nios-test-0.2.0.tgz
+    version: 0.2.0
+generated: "2023-06-05T08:08:51.758647137Z"
